@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Expense Tracker</h1>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <form action="/add" method="POST" class="mb-4">
+            <div class="form-group">
+                <label for="amount">Amount:</label>
+                <input type="text" id="amount" name="amount" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="category">Category:</label>
+                <input type="text" id="category" name="category" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">Add Expense</button>
+        </form>
+        <a href="/chart" class="btn btn-secondary">View Expense Chart</a>
+        <h2 class="mt-5">Expenses</h2>
+        <ul class="list-group">
+            {% for expense in expenses %}
+                <li class="list-group-item">{{ expense.category }}: ${{ expense.amount }} ({{ expense.date.strftime('%Y-%m-%d') }})</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

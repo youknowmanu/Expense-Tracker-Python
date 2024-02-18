@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Chart</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Expense Chart</h1>
+        </header>
+        <div class="chart-container">
+            <img src="{{ url_for('static', filename='chart.png') }}" alt="Expense Chart" class="chart">
+        </div>
+        <a href="/" class="back-link">Back to Expenses</a>
+    </div>
+</body>
+</html>
